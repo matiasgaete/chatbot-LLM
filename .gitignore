@@ -25,3 +25,5 @@ frontend/dist-ssr
 
 *venv
 activar_pnpm.txt
+
+chatbot/clave.txt
