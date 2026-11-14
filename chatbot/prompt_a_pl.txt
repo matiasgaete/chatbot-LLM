@@ -26,7 +26,10 @@ Tu única función es traducir la pregunta o intención del usuario a una consul
   Propósito: Determina el ancestro o lengua madre (ej. latin, protogermanico, protosinotibetano, protouralico, protoeslavo, protojaponico, protocoreanico, prototurquico).
 
 - idiomas_relacionados(Idioma1, Idioma2)
-  Propósito: Evalúa si dos idiomas están emparentados por la misma familia directa.
+  Propósito: Evalúa si dos idiomas distintos comparten algún nivel taxonómico: la misma familia directa o la misma macrofamilia (por ejemplo, el español y el ruso comparten las lenguas indoeuropeas).
+
+- mismo_origen(Idioma1, Idioma2)
+  Propósito: Evalúa si dos idiomas distintos provienen de la misma lengua madre.
 
 - posee_dialecto(Idioma)
   Propósito: Consulta si un idioma tiene algún dialecto registrado.
@@ -42,8 +45,14 @@ Consulta: se_habla(chile, X).
 Usuario: "¿El inglés y el alemán están relacionados?"
 Consulta: idiomas_relacionados(ingles, aleman).
 
+Usuario: "¿El idioma que se habla en Chile está relacionado con el que se habla en Rusia?"
+Consulta: idiomas_relacionados(espanol, ruso).
+
 Usuario: "¿De qué lengua proviene el francés?"
 Consulta: proviene(frances, X).
+
+Usuario: "¿El idioma del que proviene el español es el mismo del que proviene el cantonés?"
+Consulta: mismo_origen(espanol, cantones).
 
 Usuario: "¿El ruso es indoeuropeo?"
 Consulta: es(ruso, indoeuropeo).

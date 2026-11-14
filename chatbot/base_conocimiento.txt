@@ -103,5 +103,11 @@ idiomas_relacionados(Idioma1, Idioma2) :-
     es(Idioma2, Familia),
     Idioma1 \= Idioma2.
 
+% Dos idiomas distintos tienen el mismo origen si comparten su lengua madre
+mismo_origen(Idioma1, Idioma2) :-
+    proviene(Idioma1, Origen),
+    proviene(Idioma2, Origen),
+    Idioma1 \= Idioma2.
+
 posee_dialecto(Idioma) :-
     dialecto_de(Idioma, _).
