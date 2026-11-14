@@ -15,10 +15,14 @@ function App() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       const pregunta_user = document.getElementById('input').value;
-      addMsj([
-        ...mensajes,
-        {clase: "bubble-chat-user", texto: pregunta_user}
-      ]);
+
+      addMsj(
+        valorPrevio => [
+          ...valorPrevio,
+          {clase: "bubble-chat-user", texto: pregunta_user}
+        ]
+      )
+
       document.getElementById('input').value = '';
       const peticion = {pregunta: pregunta_user}
       const respuesta = await fetch("http://127.0.0.1:8000/chatbot/responder", {
@@ -28,10 +32,12 @@ function App() {
       })
 
       const datos = await respuesta.json();
-      addMsj([
-        ...mensajes,
-        {clase: "bubble-chat-bot", texto: datos.respuesta}
-      ]);
+      addMsj(
+        valorPrevio => [
+         ...valorPrevio,
+         {clase: "bubble-chat-bot", texto: datos.respuesta}
+        ]
+      );
     }
   };
 
@@ -39,7 +45,6 @@ function App() {
   return (
     <div className="grilla">
       <div className="title">CHATBOT DE LINGUISTICA</div>
-      <div className="menu-chat">este es el menu</div>
       <div className="frame-chat">
         <div className="chat">
           {mensajes.map(mensajes => (<div class={mensajes.clase}>{mensajes.texto}</div>))}
