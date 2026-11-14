@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
   const [mensajes, addMsj] = useState(
     []
-  )
+  );
 
+  useEffect(() => {
+        const contenedor = document.getElementsByClassName("chat")[0];
+        contenedor.scrollTop = contenedor.scrollHeight;
+    }, [mensajes]);
+  
   const enter = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
-      const texto_input = document.getElementById('input').value;
       e.preventDefault();
+      const texto_input = document.getElementById('input').value;
       addMsj([
         ...mensajes,
         {clase: "bubble-chat-user", texto: texto_input},
@@ -18,6 +23,7 @@ function App() {
       document.getElementById('input').value = '';
     }
   };
+
 
   return (
     <div class="grilla">
