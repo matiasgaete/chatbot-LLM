@@ -26,7 +26,6 @@ frontend/dist-ssr
 *venv
 activar_pnpm.txt
 
-chatbot/clave.txt
 
 chatbot/.env
 chatbot/__pycache__/
