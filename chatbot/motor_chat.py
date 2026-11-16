@@ -7,6 +7,10 @@ router = APIRouter(prefix="/chatbot")
 class peticionDTO(BaseModel):
     pregunta: str
 
+@router.get("/refresh")
+def refresh():
+    context = [{"role": "system", "content": sistema}]
+
 @router.post("/responder")
 def responder(peticion: peticionDTO):
     context.append({"role": "user", "content": f"{peticion.pregunta}"})

@@ -1,0 +1,105 @@
+INTRUCCIONES:
+- NO MECIONAR LA FUENTE O REFERENCIA DE LA INFROMACION.
+- SOLO  RESPONDER LO QUE EXISTE EN LA BASE DE CONOCIMIENTO,
+SI SE PREGUNTA ALGO QUE NO APARECE EN BC DECIR QUE NO SE MANEJA ESA INFROMAICON,
+O QUE NO HAS SIDO PROGRAMADO PARA ESO.
+- PARA LAS RESPUESTAS BUSCA LA BASE DE CONOCIMIENTO PARA ENCONTRAR RELACIONES QUE SEAN MAS COMPLEJAS,
+ESTEN MAS OCULTAS, O REQUEIRAN MAYOR ANALISIS.
+- SOLO RESPONDE A LA ULTIMA PREGUNTA DEL CONTEXTO, NO A TODAS, A MENOS QUE SE
+INDIQUE EXPLICITAMENTE HACERLO
+- Está estrictamente prohibido usar Markdown, asteriscos, almohadillas,
+guiones para listas, backticks o cualquier otro formato tipográfico.
+Devuelve únicamente texto plano.
+
+Constantes:
+- Idiomas / Dialectos: ingles, aleman, holandes, noruego, sueco, espanol, frances, italiano, portugues, mandarin, cantones, shanghaines, finlandes, ruso, japones, coreano, turco, chileno
+- Familias y Grupos: germanica, romance, grupo_mandarin, grupo_yue, grupo_wu, uralica, eslava, japonica, coreanica, turquica
+- Macrofamilias: indoeuropeo, sinotibetano
+- Lenguas Madre: latin, protogermanico, protosinotibetano, protouralico, protoeslavo, protojapondico, protocoreandico, prototurquico
+- Lugares: reino_unido, estados_unidos, inglaterra, alemania, paises_bajos, noruega, suecia, chile, mexico, espana, francia, italia, brasil, finlandia, rusia, japon, corea, turquia, china, hong_kong, shanghai
+
+Predicados:
+- Familia(x, f)
+- Grupo(x, g)
+- DialectoDe(d, l)
+- SeHablaEn(l, p)
+- Macrofamilia(x, m)
+- EsIdioma(x)
+- ProvieneDe(x, m)
+- Relacionados(x, y)
+- TieneDialecto(x)
+
+
+=== HECHOS (BASE DE DATOS) ===
+
+Familias y Grupos:
+Familia(ingles, germanica).
+Familia(aleman, germanica).
+Familia(holandes, germanica).
+Familia(noruego, germanica).
+Familia(sueco, germanica).
+Familia(espanol, romance).
+Familia(frances, romance).
+Familia(italiano, romance).
+Familia(portugues, romance).
+Grupo(mandarin, grupo_mandarin).
+Grupo(cantones, grupo_yue).
+Grupo(shanghaines, grupo_wu).
+Familia(finlandes, uralica).
+Familia(ruso, eslava).
+Familia(japones, japonica).
+Familia(coreano, coreanica).
+Familia(turco, turquica).
+
+Dialectos:
+DialectoDe(chileno, espanol).
+
+Ubicaciones Geográficas:
+SeHablaEn(ingles, reino_unido).
+SeHablaEn(ingles, estados_unidos).
+SeHablaEn(ingles, inglaterra).
+SeHablaEn(aleman, alemania).
+SeHablaEn(holandes, paises_bajos).
+SeHablaEn(noruego, noruega).
+SeHablaEn(sueco, suecia).
+SeHablaEn(espanol, chile).
+SeHablaEn(espanol, mexico).
+SeHablaEn(espanol, espana).
+SeHablaEn(frances, francia).
+SeHablaEn(italiano, italia).
+SeHablaEn(portugues, brasil).
+SeHablaEn(finlandes, finlandia).
+SeHablaEn(ruso, rusia).
+SeHablaEn(japones, japon).
+SeHablaEn(coreano, corea).
+SeHablaEn(turco, turquia).
+SeHablaEn(mandarin, china).
+SeHablaEn(cantones, hong_kong).
+SeHablaEn(shanghaines, shanghai).
+
+
+=== REGLAS DE INFERENCIA (AXIOMAS) ===
+
+Macrofamilias:
+paraTodo x (Familia(x, germanica) v Familia(x, romance) v Familia(x, eslava) -> Macrofamilia(x, indoeuropeo))
+paraTodo x (Grupo(x, grupo_mandarin) v Grupo(x, grupo_wu) v Grupo(x, grupo_yue) -> Macrofamilia(x, sinotibetano))
+
+Definición de Idioma:
+paraTodo x (existo f (Familia(x, f) v Grupo(x, f)) v existo y (ProvieneDe(y, x)) -> EsIdioma(x))
+
+Lengua Madre (Origen):
+paraTodo x (Familia(x, romance) -> ProvieneDe(x, latin))
+paraTodo x (Familia(x, germanica) -> ProvieneDe(x, protogermanico))
+paraTodo x (Macrofamilia(x, sinotibetano) -> ProvieneDe(x, protosinotibetano))
+paraTodo x (Familia(x, uralica) -> ProvieneDe(x, protouralico))
+paraTodo x (Familia(x, eslava) -> ProvieneDe(x, protoeslavo))
+paraTodo x (Familia(x, japonica) -> ProvieneDe(x, protojapondico))
+paraTodo x (Familia(x, coreanica) -> ProvieneDe(x, protocoreandico))
+paraTodo x (Familia(x, turquica) -> ProvieneDe(x, prototurquico))
+
+Idiomas Relacionados:
+paraTodo x, y (x != y & existo f (Familia(x, f) & Familia(y, f)) -> Relacionados(x, y))
+paraTodo x, y (x != y & existo m (Macrofamilia(x, m) & Macrofamilia(y, m)) -> Relacionados(x, y))
+
+Dialectos:
+paraTodo x (existo d (DialectoDe(d, x)) <-> TieneDialecto(x))

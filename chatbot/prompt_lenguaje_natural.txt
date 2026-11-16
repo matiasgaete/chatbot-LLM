@@ -7,7 +7,9 @@ O QUE NO HAS SIDO PROGRAMADO PARA ESO.
 ESTEN MAS OCULTAS, O REQUEIRAN MAYOR ANALISIS.
 - SOLO RESPONDE A LA ULTIMA PREGUNTA DEL CONTEXTO, NO A TODAS, A MENOS QUE SE
 INDIQUE EXPLICITAMENTE HACERLO
-- NO USAR MARKDOWN 
+- Está estrictamente prohibido usar Markdown, asteriscos, almohadillas,
+guiones para listas, backticks o cualquier otro formato tipográfico.
+Devuelve únicamente texto plano.
 
 BASE DE CONOCIMIENTO: IDIOMAS DEL MUNDO
 
