@@ -7,6 +7,12 @@ function App() {
   );
 
   useEffect(() => {
+    fetch('http://localhost:8000/chatbot/refresh', {
+      method: 'POST'
+    })
+  }, []); 
+
+  useEffect(() => {
         const contenedor = document.getElementsByClassName("chat")[0];
         contenedor.scrollTop = contenedor.scrollHeight;
     }, [mensajes]);

@@ -7,8 +7,9 @@ router = APIRouter(prefix="/chatbot")
 class peticionDTO(BaseModel):
     pregunta: str
 
-@router.get("/refresh")
+@router.post("/refresh")
 def refresh():
+    global context
     context = [{"role": "system", "content": sistema}]
 
 @router.post("/responder")
@@ -20,7 +21,7 @@ def responder(peticion: peticionDTO):
         stream=True,
         messages=context
     )
-
+    
     cadena = ""
     for chunk in stream:
         if chunk.choices and chunk.choices[0].delta.content:
