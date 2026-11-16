@@ -11,6 +11,8 @@ INDIQUE EXPLICITAMENTE HACERLO
 guiones para listas, backticks o cualquier otro formato tipográfico.
 Devuelve únicamente texto plano.
 
+- las respeustas no debens er de un
+
 Constantes:
 - Idiomas / Dialectos: ingles, aleman, holandes, noruego, sueco, espanol, frances, italiano, portugues, mandarin, cantones, shanghaines, finlandes, ruso, japones, coreano, turco, chileno
 - Familias y Grupos: germanica, romance, grupo_mandarin, grupo_yue, grupo_wu, uralica, eslava, japonica, coreanica, turquica
@@ -98,6 +100,7 @@ paraTodo x (Familia(x, coreanica) -> ProvieneDe(x, protocoreandico))
 paraTodo x (Familia(x, turquica) -> ProvieneDe(x, prototurquico))
 
 Idiomas Relacionados:
+paraTodo x, y, m (x != y & ProvieneDe(x, m) & ProvieneDe(y, m) -> Relacionados(x, y))
 paraTodo x, y (x != y & existo f (Familia(x, f) & Familia(y, f)) -> Relacionados(x, y))
 paraTodo x, y (x != y & existo m (Macrofamilia(x, m) & Macrofamilia(y, m)) -> Relacionados(x, y))
 
